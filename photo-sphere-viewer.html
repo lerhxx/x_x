@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Photo-Sphere-Viewer</title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		.box {
+			position: relative;
+			width: 100%;
+			height: 500px;
+			border: 1px solid #ff7667;
+		}
+		#controller {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 30px;
+			width: 190px;
+			height: 190px;
+			margin: auto;
+		}
+		#controller .con {
+			position: absolute;
+			width: 60px;
+			height: 60px;
+			background: url(public/images/bottom_arrow.png) center no-repeat;
+			background-size: 100%;
+			cursor: pointer;
+		}
+		.con.forward-con {
+			top: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+			-webkit-transform: rotate3d(0, 0, 1, 180deg);
+			transform: rotate3d(0, 0, 1, 180deg);
+		}
+		.con.back-con {
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+		}
+		.con.left-con {
+			top: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			-webkit-transform: rotate3d(0, 0, 1, 90deg);
+			transform: rotate3d(0, 0, 1, 90deg);
+		}
+		.con.right-con {
+			top: 0;
+			bottom: 0;
+			right: 0;
+			margin: auto;
+			-webkit-transform: rotate3d(0, 0, 1, -90deg);
+			transform: rotate3d(0, 0, 1, -90deg);
+		}
+		.hide {
+			visibility: hidden!important;
+		}
+	</style>
+</head>
+<body>
+	<div class='box'>
+		<div id='container'>
+		</div>
+		<div id='controller' class='hide'>
+			<i class='con forward-con' id='forw'></i>
+			<i class='con back-con' id='back'></i>
+			<i class='con left-con' id='left'></i>
+			<i class='con right-con' id='right'></i>
+		</div>
+	</div>
+<script type="text/javascript" src='public/js/three.min.js'></script>
+<script type="text/javascript" src='public/js/photo-sphere-viewer.js'></script>
+<script type="text/javascript">
+	window.onload = function() {
+		var div = document.getElementById('container'),
+			wheel = document.getElementById('controller'),
+			isHold = false,
+			PSVr,
+			time,
+			anim,
+			tar;
+
+		init();
+
+		function init() {
+			PSV = new PhotoSphereViewer({
+				panorama: '../img/sun.jpg',
+				container: div,
+				time_anim: false,
+				navbar: true,
+				size: {
+					width: '100%',
+					height: '500px'
+				},
+				tilt_down_max: Math.PI / 7,
+				tilt_up_max: Math.PI / 7,
+				onready: showController
+			})
+			// console.log(PSV);
+		}
+
+		function showController() {
+			bindEvent();
+			wheel.className = '';
+		}
+
+		function bindEvent() {
+			wheel.addEventListener('mousedown', isHoldDown, false);
+			wheel.addEventListener('mouseup', holdUp, false);
+		}
+
+		function isHoldDown(e) {
+			var startT,
+				endT;
+
+			tar = e.target;
+			startT = new Date().getTime();
+
+			time = setInterval(function() {
+				endT = new Date().getTime();
+				if(endT - startT > 1000 && isHold) {
+					hold();
+					clearInterval(time);
+				}else if(!isHold) {
+					handleChange();
+					isHold = true;
+				}
+			},100)
+		}
+
+		function hold() {
+			handleChange();
+			anim = requestAnimationFrame(hold);
+		}
+
+		function handleChange() {
+			var id = tar.getAttribute('id'),
+				posi = PSV.getPosition();
+				// console.log(posi)
+
+			switch(id) {
+				case 'forw': goStraight(posi); break;
+				case 'back': goBack(posi); break;
+				case 'left': turnLeft(posi); break;
+				case 'right': turnRight(posi); break;
+			}
+		}
+
+		function holdUp() {
+			clearInterval(time);
+			cancelAnimationFrame(anim);
+			isHold = false;
+		}
+
+		function goStraight(posi) {
+			PSV.zoomIn();
+			// console.log('forw');
+		}
+
+		function goBack(posi) {
+			PSV.zoomOut();
+			// console.log('back');
+		}
+
+		function turnLeft(posi) {
+			PSV.moveTo(posi.longitude + 1, posi.latitude);
+			// console.log(posi.long  + ' ' + (posi.long + 1));
+		}
+
+		function turnRight(posi) {
+			PSV.moveTo(posi.longitude - 1, posi.latitude);
+			// console.log(newLong);
+		}
+	}
+</script>
+</body>
+</html>
