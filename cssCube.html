@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSS3实现全景浏览</title>
+	<meta charset='utf-8' />
+	<meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no' />	
+	<style type="text/css">
+		.container {
+			width: 640px;
+			margin: 50px auto;
+		}
+		.stage {
+			position: relative;
+			width: 500px;
+			height: 500px;
+			margin: 0 auto;
+			transform-style: preserve-3d;
+			perspective: 20px;
+		}
+		.controller {
+			transform-style: preserve-3d;
+			transform: translateZ(20px);
+			/*transform: rotateX(-88deg);*/
+		}
+		.wrap {
+			position: relative;
+			width: 130px;
+			height: 400px;
+			margin: auto;
+			transform-style: preserve-3d;
+			animation: cubeRotate 15s linear infinite;
+		}
+		@keyframes cubeRotate {
+			form {
+				transform: rotateY(0deg);
+			}
+			to {
+				transform: rotateY(360deg);
+			}
+		}
+		.side {
+			position: absolute;
+			width: 130px;
+			height: 800px;
+			left: -1px;
+			top: -1px;
+			/*backface-visibility: hidden;*/
+		}
+		.side1 {
+			transform: translate3d(0, 0, -100px);
+			background: url(public/images/7.jpg) 0 0 no-repeat;
+			background-size: cover;
+		}
+		.side2 {
+			transform: translate3d(85px, 0, -50px) rotate3d(0, 1, 0, -60deg);
+			background: url(public/images/7.jpg) -130px 0 no-repeat;
+			background-size: cover;
+		}
+		.side3 {
+			transform: translate3d(85px, 0, 50px) rotate3d(0, 1, 0, -120deg);
+			background: url(public/images/7.jpg) -260px 0 no-repeat;
+			background-size: cover;
+		}
+		.side4 {
+			transform: translate3d(0, 0, 100px);
+			background: url(public/images/7.jpg) -390px 0 no-repeat;
+			background-size: cover;
+		}
+		.side5 {
+			transform: translate3d(-85px, 0, 50px) rotate3d(0, 1, 0, 120deg);
+			background: url(public/images/7.jpg) -520px 0 no-repeat;
+			background-size: cover;
+		}
+		.side6 {
+			transform: translate3d(-85px, 0, -50px) rotate3d(0, 1, 0, 60deg);
+			background: url(public/images/7.jpg) -650px 0 no-repeat;
+			background-size: cover;
+		}
+	</style>
+</head>
+<body>
+	<div class='container'>
+		<div class='stage'>
+			<div class='controller'>
+				<div class='wrap'>
+					<div class='side side1'></div>
+					<div class='side side2'></div>
+					<div class='side side3'></div>
+					<div class='side side4'></div>
+					<div class='side side5'></div>
+					<div class='side side6'></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

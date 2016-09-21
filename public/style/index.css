@@ -64,7 +64,8 @@ nav li a{
 }
 .project h2,
 .other-box h2,
-.experience-box h2 {
+.experience-box h2,
+.intro-box h2 {
 	width: 300px;
 	height: 200px;
 	color: #fff;
@@ -148,6 +149,14 @@ nav li a{
 .experience .name {
 	font-size: 25px;
 }
+.intro-box {
+	padding: 0 10% 200px;
+	text-align: center;
+}
+.intro-box h2 {
+	line-height: 250px;
+	background-color: rgb(255,150,128);
+}
 .other-box,
 .other-box h2 {
 	background-color: rgb(88,94,92);
@@ -196,7 +205,8 @@ nav li a{
 	.cover p {
 		margin: 0 10px;
 	}
-	.project {
+	.project,
+	.intro-box {
 		padding: 0px 10px 100px;
 	}
 	.item-left .show,
@@ -221,7 +231,8 @@ nav li a{
 	}
 	.project h2,
 	.other-box h2,
-	.experience-box h2 {
+	.experience-box h2,
+	.intro-box h2 {
 		width: 200px;
 		height: 160px;
 		margin: -125px auto 50px;

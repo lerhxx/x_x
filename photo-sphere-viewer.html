@@ -151,6 +151,16 @@
 			}
 		}
 
+		window.addEventListener('deviceorientation', DeviceOrientationHandler, false);
+
+		function DeviceOrientationHandler(e) {
+			console.log(e)
+			var alpha = e.alpha,
+				beta = e.beta,
+				gamma = e.gamma;
+			console.log(alpha + ' ' + beta + ' ' + gamma);
+		}
+
 		function holdUp() {
 			clearInterval(time);
 			cancelAnimationFrame(anim);
