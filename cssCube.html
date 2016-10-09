@@ -15,11 +15,11 @@
 			height: 500px;
 			margin: 0 auto;
 			transform-style: preserve-3d;
-			perspective: 20px;
+			/*perspective: 20px;*/
 		}
 		.controller {
 			transform-style: preserve-3d;
-			transform: translateZ(20px);
+			/*transform: translateZ(20px);*/
 			/*transform: rotateX(-88deg);*/
 		}
 		.wrap {
@@ -28,7 +28,7 @@
 			height: 400px;
 			margin: auto;
 			transform-style: preserve-3d;
-			animation: cubeRotate 15s linear infinite;
+			/*animation: cubeRotate 15s linear infinite;*/
 		}
 		@keyframes cubeRotate {
 			form {
@@ -79,6 +79,9 @@
 	</style>
 </head>
 <body>
+<menu>
+<li><input type='text' id='text' /></li>
+</menu>
 	<div class='container'>
 		<div class='stage'>
 			<div class='controller'>
@@ -93,5 +96,22 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function sum() {
+			var f = 1,
+				s = 0,
+				n = 41,
+				MOD = 1000000,
+				F = 1,
+				S = 0;
+			for(var i = 1; i <= n; i++) {
+				f = (f * i) % MOD;
+				s = (s + f) % MOD;
+			}
+			// console.log(s % MOD);
+			console.log(s);
+		}
+		sum();
+	</script>
 </body>
 </html>

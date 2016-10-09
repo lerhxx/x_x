@@ -84,29 +84,29 @@ body > div {
 	line-height: 250px;
 	background-color: rgb(254,67,101);
 }
-.project .item-left {
+.project .item {
 	margin: 0 auto;
 	overflow: hidden;
 }
-.item-left .show {
+.item .show {
 	float: left;
 	width: 50%;
 	height: 300px;
+	background-color: #fff;
+}
+.item .show.three3D {
 	background: url(../images/bg.png) 0 0;
 }
-.item-left .show img{
-	width: 100%;
-	height: 100%;
-}
-.item-left .intro {
+.item .intro {
 	float: left;
 	width: 50%;
 	height: 300px;
 	padding: 20px;
-	font-size: 20px;
+	color: #fff;
+	font-size: 25px;
 	text-align: left;
 	vertical-align: top;
-	background-color: rgb(252,157,154);
+	background-color: rgb(249,205,173);
 	box-sizing: border-box;
 }
 .intro p{
@@ -131,6 +131,20 @@ body > div {
 	border: 1px solid #6F4403;
 	content: '';
 	border-radius: 10px;
+}
+.intro .translate {
+	padding-left: 20px;
+}
+.item .show .webgl{
+	width: 100%;
+	height: 100%;
+	background: #fff url(../images/webgl.jpg) center no-repeat;
+	background-size: 80%;
+}
+.intro .translate li {
+	margin: 10px 0;
+	font-size: 20px;
+	list-style-type: circle;
 }
 .experience-box{
 	padding: 0 10%;
