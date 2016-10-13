@@ -133,7 +133,9 @@ body > div {
 	border-radius: 10px;
 }
 .intro .translate {
-	padding-left: 20px;
+	width: 100%;
+	padding: 0 20px;
+	box-sizing: border-box;
 }
 .item .show .webgl{
 	width: 100%;
@@ -142,9 +144,13 @@ body > div {
 	background-size: 80%;
 }
 .intro .translate li {
+	width: 100%;
 	margin: 10px 0;
 	font-size: 20px;
 	list-style-type: circle;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 .experience-box{
 	padding: 0 10%;
