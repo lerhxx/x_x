@@ -9,45 +9,153 @@ absolute()
 relative()
 	-pos('relative', arguments)
 
-body
+body,
+p,
+h3,
+ul
 	padding 0
 	margin 0
-.container
-	width 640px
-	margin 50px auto
-.stage
-	relative()
-	width 500px
-	height 400px
-	margin 0 auto
-	overflow hidden
-	perspective 270px
-.stage,
-.controller,
-.wrap
-	transform-style preserve-3d
-.controller
-	transform rotateY(0deg) translateY(-300px)
-	animation threeRotate 15s linear infinite
-.wrap
-	relative()
-	width 100px
-	height 1000px
+ul
+	li
+		list-style none
+body
+	text-align center
+	background url(../imgs/bg4.jpg) center no-repeat
+	background-size cover
+a
+	color #000
+	text-decoration none
+#canvas
+	absolute(top 0 left 0)
+	z-index -1
+.contain
+	display inline-block
+	width 80%
+	min-width 320px
+	padding 10px
+	margin 100px 0
+	background-color rgba(255, 255, 255, .85)
+.intro
+	width 80%
+	padding 10px
+	padding-top 30px
 	margin auto
-	.side
-		absolute left -1px top -1px
-		width 100px
-		height 1000px
-		background url(../images/sun.jpg) 0 0 no-repeat
-		background-size cover
-	for index in 1..40
-		.side{index}
-			background-position -100px * (index - 1) 0
-			transform rotateY(18deg * index) translateZ(290px)
-
-@keyframes threeRotate 
-	form 
-		transform rotateY(0deg) translateY(-200px)
-	to 
-		transform rotateY(360deg) translateY(-200px)
-	
+	margin-bottom 50px
+	text-align center
+	border-radius 8px
+	p
+		width 50%
+		margin auto
+		text-align left
+.pro
+	width 100px
+	height 100px
+	margin-bottom 30px
+	border-radius 50%
+	background-color rgba(255, 255, 255, .3)
+.section
+	width 80%
+	padding 10px 20px
+	margin 30px auto
+	box-shadow 2px 1px 6px 0 rgba(0, 0, 0, .3)
+	h2
+		margin-bottom 20px
+		text-align left
+.translate
+	text-align center
+	.item
+		display inline-block
+		width 45%
+		min-width 200px
+		margin-top 30px
+		text-align left
+	.logo
+		width 150px
+		height 150px
+		margin-right 15px
+		box-shadow 0 0 5px 5px rgba(0, 0, 0, .2) 
+		background  center no-repeat
+		background-size contain
+		border-radius 10px
+	.webgl-logo
+		background-image url(../imgs/webgl-logo.png)
+		background-size contain
+	.zcfy-logo
+		background-image url(../imgs/zcfy-logo.png)
+		background-size contain
+	.list
+		display inline-block
+		width 100%
+		margin-top 15px
+		vertical-align top
+		counter-reset list
+		li
+			counter-increment list
+			&:before
+				display inline-block
+				width 10px
+				content '(' counter(list) ')'
+				vertical-align middle
+			a
+				display inline-block
+				width 85%
+				margin-left 10px
+				vertical-align middle
+				text-overflow ellipsis
+				white-space nowrap
+				overflow hidden
+.projects
+	text-align center
+	overflow hidden
+	.item-wrapper
+		display inline-block
+		width 250px
+		height 250px
+		padding-top 250px
+		margin 20px 10px
+		border 1px solid #ccc
+		background center no-repeat
+		box-sizing border-box
+		overflow hidden
+		&:hover
+			.content
+				transform translateY(-100%)
+	.match
+		background-image url(../imgs/match.png)
+		background-size contain
+	.teach
+		background-image url(../imgs/teach.png)
+		background-size contain
+	.maze
+		background-image url(../imgs/maze.png)
+		background-size contain
+	.particle
+		background-image url(../imgs/particle.png)
+		background-size contain
+	.overall
+		background-image url(../imgs/overall.png)
+		background-size contain
+	.content
+		width 100%
+		padding 10px 
+		text-align left
+		background-color rgba(255, 255, 255, .95)
+		transition transform .3s
+		transform translateY(-40px)
+		box-sizing border-box
+		p
+			cursor default
+	.title 
+		margin-bottom 5px
+		text-align center
+		a
+			color #000
+			font-size 20px
+			font-weight bold
+.exper
+	.time
+		color #aaa
+	.item
+		margin 20px 0
+	h3
+		margin-bottom 10px

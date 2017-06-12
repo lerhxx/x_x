@@ -105,8 +105,8 @@ var ParticleSys = function () {
 		this.canvas = document.getElementById('canvas');
 		this.ctx = this.canvas.getContext('2d');
 
-		this.canvas.width = window.innerWidth;
-		this.canvas.height = 400;
+		this.canvas.width = document.body.scrollWidth;
+		this.canvas.height = document.body.scrollHeight;
 
 		this.w = this.canvas.width;
 		this.h = this.canvas.height;
@@ -115,6 +115,7 @@ var ParticleSys = function () {
 
 		this.nodes = [];
 		this.edges = [];
+		this.counter = null;
 
 		this.bindEvent();
 		this.render = this.render.bind(this);
@@ -126,7 +127,7 @@ var ParticleSys = function () {
 	_createClass(ParticleSys, [{
 		key: 'init',
 		value: function init() {
-			for (var i = 0; i < 200; ++i) {
+			for (var i = 0; i < 350; ++i) {
 				var vx = Math.random() - .5,
 				    vy = Math.random() - .5,
 				    r = MathUtil(1, 5);
@@ -211,6 +212,15 @@ var ParticleSys = function () {
 			this.canvas.addEventListener('mouseleave', function (e) {
 				return _this2.mouseLeave();
 			});
+			window.onresize = function () {
+				clearTimeout(_this2.counter);
+				_this2.counter = setTimeout(function () {
+					_this2.canvas.width = document.body.scrollWidth;
+					_this2.canvas.height = document.body.scrollHeight;
+					_this2.render();
+					console.log(document.body.scrollHeight);
+				}, 1500);
+			};
 		}
 	}, {
 		key: 'mouserEnter',
