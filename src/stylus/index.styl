@@ -19,10 +19,7 @@ ul
 	li
 		list-style none
 body
-	text-align center
-	//background url(../imgs/bg4.jpg) center no-repeat
-	//background-color rgb(252, 157, 154)
-	background-color rgb(250, 150, 128)
+	background-color #8ef1cc
 	background-size cover
 a
 	color #000
@@ -31,12 +28,11 @@ a
 	absolute(top 0 left 0)
 	z-index -1
 .contain
-	display inline-block
 	width 80%
 	min-width 320px
 	padding 10px
-	margin 100px 0
-	background-color rgba(255, 255, 255, .85)
+	margin 100px auto
+	background-color rgba(255, 255, 255, .55)
 .intro
 	width 80%
 	padding 10px
@@ -44,22 +40,12 @@ a
 	margin auto
 	margin-bottom 50px
 	text-align center
-	border-radius 8px
 	p
-		width 50%
-		margin auto
+		margin 20px 0
 		text-align left
-.pro
-	width 100px
-	height 100px
-	margin auto
-	margin-bottom 30px
-	border-radius 50%
-	background url(../imgs/3.jpg) center no-repeat
-	background-size cover
 .section
 	width 80%
-	padding 10px 20px
+	padding 10px 20px 30px
 	margin 30px auto
 	box-shadow 2px 1px 6px 0 rgba(0, 0, 0, .3)
 	h2
@@ -71,12 +57,13 @@ a
 		display inline-block
 		width 45%
 		min-width 200px
-		margin-top 30px
 		text-align left
+		line-height 1.6rem
 	.logo
-		width 150px
-		height 150px
+		width 130px
+		height 130px
 		margin-right 15px
+		margin-bottom 10px
 		box-shadow 0 0 5px 5px rgba(0, 0, 0, .2) 
 		background  center no-repeat
 		background-size contain
@@ -97,17 +84,20 @@ a
 			counter-increment list
 			&:before
 				display inline-block
-				width 10px
+				width 30px
 				content '(' counter(list) ')'
 				vertical-align middle
 			a
 				display inline-block
 				width 85%
-				margin-left 10px
 				vertical-align middle
 				text-overflow ellipsis
 				white-space nowrap
 				overflow hidden
+	.more
+		float right
+		color #b1acac
+		font-size 12px
 .projects
 	text-align center
 	overflow hidden
@@ -169,14 +159,15 @@ a
 	.time
 		color #aaa
 	.item
-		margin 20px 0
+		margin 20px 0 30px
+		line-height 2rem
 	h3
 		margin-bottom 10px
 .touch
 	text-align center
 	.item
-		display inline-block
-		width 250px
+		flex 1
+		width 33.33%
 		font-size 12px
 		& > img
 			display block
