@@ -4,18 +4,46 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>X_X by lerhxx</title>
+    <title>x_x by xuehuna</title>
     <link rel="stylesheet" href="./dist/css/index.css">
   </head>
   <body>
-    <!-- <canvas id='canvas'></canvas> -->
+    <nav class='navbar'>
+      <ul>
+        <li>
+          <a href="#intro">介绍</a>
+        </li>
+        <li>
+          <a href="#project">项目</a>
+        </li>
+        <li>
+          <a href="#translate">翻译</a>
+        </li>
+        <li>
+          <a href="#experience">实习经验</a>
+        </li>
+        <li>
+          <a href="#contact">联系方式</a>
+        </li>
+      </ul>
+    </nav>
     <div class='contain'>
       <section class='section intro'>
-          <h2>介绍</h2>
-          <p>喜欢人机交互，喜欢游戏开发，喜欢前端，喜欢接触新事物，乐于解决问题，希望能够接触更多有创意、有挑战性的工作。</p>
+          <h2 id='intro'>介绍</h2>
+          <p>喜欢交互设计，喜欢前端，喜欢接触新事物，希望能够接触有创意、有挑战性的工作。</p>
       </section>
       <section class='section projects'>
-        <h2>项目</h2>
+        <h2 id='project'>项目</h2>
+        <div class='item-wrapper detector'>
+          <div class='content'>
+            <h3 class='title'>
+              <a href='https://lerhxx.github.io/shapDetector/shapeDetector.html' target='_blank'>Shape Detector API</a>
+            </h3>
+            <p style='text-align: center'>
+              <a href='https://lerhxx.github.io/shapDetector/shapeDetector.html' target='_blank'>面部标记 Demo</a>
+            </p>
+          </div>
+        </div>
         <div class='item-wrapper goBang'>
           <div class='content'>
             <h3 class='title'>
@@ -52,11 +80,10 @@
         <div class='item-wrapper calendar'>
           <div class='content'>
             <h3 class='title'>
-              <a href='https://lerhxx.github.io/vue-datepicker/' target='_blank'>自定义日历插件</a>
+              <a href='https://lerhxx.github.io/vue-datepicker/index.html' target='_blank'>自定义日历插件</a>
             </h3>
             <p>
               基于vue开发的自定义日历开发。
-              <a href='https://github.com/lerhxx/vue-datepicker' target='_blank'>代码</a>
             </p>
           </div>
         </div>
@@ -92,7 +119,7 @@
         </div>
       </section>
       <section class='section translate'>
-        <h2>翻译</h2>
+        <h2 id='translate'>翻译</h2>
         <div class='item'>
           <div class='logo webgl-logo'></div><ul class='list'>
             <li>
@@ -154,7 +181,7 @@
         </div>
       </section>
       <section class='section exper'>
-        <h2>实习</h2>
+        <h2 id='experience'>实习经验</h2>
         <div class='item'>
           <h3>网易游戏</h3>
           <p class='time'>时间：2016.12-2017.06</p>
@@ -172,7 +199,7 @@
         </div>
       </section>
       <section class='section touch'>
-        <h2>联系方式</h2>
+        <h2 id='contact'>联系方式</h2>
         <div style='display: flex;'>
           <div class='item'>
             <img src='./dist/imgs/github.png' />

@@ -9,6 +9,8 @@ absolute()
 relative()
 	-pos('relative', arguments)
 
+nav-item-height = 60px
+
 body,
 p,
 h3,
@@ -20,19 +22,33 @@ ul
 		list-style none
 body
 	background-color #8ef1cc
+	background-color #f2f5f4
 	background-size cover
 a
 	color #000
 	text-decoration none
-#canvas
-	absolute(top 0 left 0)
-	z-index -1
+.navbar
+	position fixed
+	position sticky
+	top 0
+	left 0
+	right 0
+	color #fff
+	background rgba(0, 0, 0, .8)
+	z-index 99
+	li
+		display inline-block
+		height nav-item-height
+		margin 0 20px
+		line-height nav-item-height
+		a
+			display block
+			color #fff
 .contain
 	width 80%
 	min-width 320px
-	padding 10px
-	margin 100px auto
-	background-color rgba(255, 255, 255, .55)
+	margin 0px auto 100px
+	//background-color rgba(255, 255, 255, .7)
 .intro
 	width 80%
 	padding 10px
@@ -48,6 +64,7 @@ a
 	padding 10px 20px 30px
 	margin 30px auto
 	box-shadow 2px 1px 6px 0 rgba(0, 0, 0, .3)
+	background #fff
 	h2
 		margin-bottom 20px
 		text-align left
@@ -117,27 +134,31 @@ a
 		p
 			a
 				text-decoration underline
+	.detector
+		background-image url(../imgs/shapeDetector.png)
+		background-size cover
 	.goBang
 		background-image url(../imgs/goBang.png)
-		background-size contain
+		background-size cover
 	.match
 		background-image url(../imgs/match.png)
-		background-size contain
+		background-size cover
 	.teach
 		background-image url(../imgs/teach.png)
-		background-size contain
+		background-size cover
 	.calendar
 		background-image url(../imgs/calendar.png)
-		background-size contain
+		background-position center 0
+		background-size cover
 	.maze
 		background-image url(../imgs/maze.png)
-		background-size contain
+		background-size cover
 	.particle
 		background-image url(../imgs/particle.png)
-		background-size contain
+		background-size cover
 	.overall
 		background-image url(../imgs/overall.png)
-		background-size contain
+		background-size cover
 	.content
 		width 100%
 		padding 10px 
