@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>css shape</title>
+	<meta charset='utf-8' />
+	<meta name='viewport' content='width=device-width,initial-scale=1' />
+	<style type="text/css">
+		.table {
+			display: table;
+		}
+		.table input {
+		}
+		.wrapper {
+			display: inline-block;
+			margin: 0 10px;
+		}
+		.rect1 {
+			width: 0px;
+			height: 0px;
+			margin: auto;
+			border: 20px solid red;
+			border-left-color: blue;
+			border-right-color: yellow;
+			border-top-color: purple;
+		}
+		.rect2 {
+			width: 0px;
+			height: 0px;
+			margin: auto;
+			border-top: 20px solid red;
+			border-left: 10px solid blue;
+			border-right: 15px solid yellow;
+			border-bottom: 25px solid purple;
+		}
+		.rect3 {
+			width: 10px;
+			height: 0px;
+			margin: auto;
+			border: 20px solid red;
+			border-left-color: blue;
+			border-right-color: yellow;
+			border-top-color: purple;
+		}
+		.rect4 {
+			width: 10px;
+			height: 10px;
+			margin: auto;
+			border: 20px solid red;
+			border-left-color: blue;
+			border-right-color: yellow;
+			border-top-color: purple;
+		}
+		.triangle1 {
+			width: 0px;
+			height: 0px;
+			margin: auto;
+			border: 20px solid transparent;
+			border-left-width: 10px;
+			border-bottom-color: red;
+		}
+		.triangle2 {
+			width: 0px;
+			height: 0px;
+			margin: auto;
+			border: 20px solid transparent;
+			border-bottom-color: red;
+		}
+		.triangle3 {
+			width: 0px;
+			height: 0px;
+			margin: auto;
+			border: 20px solid transparent;
+			border-bottom-width: 28.284271px;
+			border-bottom-color: red;
+			border-top-width: 28.284271px;
+		}
+		.triangle4 {
+			width: 0px;
+			height: 0px;
+			margin: auto;
+			border: 20px solid transparent;
+			border-right-color: red;
+			border-bottom-color: red;
+		}
+		.echelon1 {
+			width: 15px;
+			height: 0;
+			border: 20px solid transparent;
+			border-left-width: 10px;
+			border-bottom-color: red;
+		}
+		.echelon2 {
+			width: 15px;
+			border: 20px solid transparent;
+			border-bottom-color: red;
+		}
+		.box1 {
+			width: 15px;
+			height: 0;
+			border: 20px solid transparent;
+			border-left-width: 10px;
+			border-right-width: 10px;
+			border-top-color: red;
+			border-bottom-color: red;
+		}
+		.box2 {
+			position: relative;
+			width: 0px;
+			height: 15px;
+			margin: auto;
+			border: 20px solid transparent;
+			border-top-width: 10px;
+			border-bottom-width: 10px;
+			border-left-color: red;
+			border-right-color: red;
+			border-radius: 10px;
+		}
+		.box2:after {
+			position: absolute;
+			top: -3px;
+			left: -2px;
+			width: 5px;
+			height: 22px;
+			content: '';
+			background: purple;
+			border-radius: 15px;
+		}
+		.box3 {
+			position: relative;
+			width: 0px;
+			height: 15px;
+			margin: auto;
+			border: 20px solid transparent;
+			border-top-width: 10px;
+			border-bottom-width: 10px;
+			border-left-color: #675353;
+			border-right-color: #675353;
+			border-radius: 30px;
+		}
+		.box3:after {
+			position: absolute;
+			top: -3px;
+			left: -2px;
+			width: 5px;
+			height: 40px;
+			content: '';
+			background: #e4bb41;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div class='table'>
+		<input type="" name="">
+		<input type="" name="">
+	</div> -->
+	<div>
+		<div class='wrapper'>
+			<div class='rect1'></div>
+			<p>rect1</p>
+		</div>
+		<div class='wrapper'>
+			<div class='rect2'></div>
+			<p>rect2</p>
+		</div>
+		<div class='wrapper'>
+			<div class='rect3'></div>
+			<p>rect3</p>
+		</div>
+		<div class='wrapper'>
+			<div class='rect4'></div>
+			<p>rect4</p>
+		</div>
+	</div>
+	<div>
+		<div class='wrapper'>
+			<div class='triangle1'></div>
+			<p>普通三角形</p>
+		</div>
+		<div class='wrapper'>
+			<div class='triangle2'></div>
+			<p>等腰三角形</p>
+		</div>
+		<div class='wrapper'>
+			<div class='triangle3'></div>
+			<p>等边三角形</p>
+		</div>
+		<div class='wrapper'>
+			<div class='triangle4'></div>
+			<p>等腰直角角形</p>
+		</div>
+	</div>
+	<div>
+		<div class='wrapper'>
+			<div class='echelon1'></div>
+			<p>梯形</p>
+		</div>
+		<div class='wrapper'>
+			<div class='echelon2'></div>
+			<p>等腰梯形</p>
+		</div>
+	</div>
+	<div>
+		<div class='wrapper'>
+			<div class='box1'></div>
+			<p>沙漏</p>
+		</div>
+		<div class='wrapper'>
+			<div class='box2'></div>
+			<p>蝴蝶结</p>
+		</div>
+		<div class='wrapper'>
+			<div class='box3'></div>
+			<p>斧头</p>
+		</div>
+	</div>
+</body>
+</html>
+
+
