@@ -1,0 +1,115 @@
+zero-content(w = 0, h = 0)
+	width unit(w, px)
+	height unit(h, px)
+
+default-color = #8a7e7e
+
+body
+	padding 0
+	margin 0
+.wrapper 
+	margin 10px
+	& > div
+		display inline-block
+		margin 0 10px
+.rect
+	display table
+	.box1
+		zero-content()
+		border 20px solid transparent
+		border-bottom-width 25px
+		border-bottom-color default-color
+	.box2
+		zero-content()
+		border 20px solid transparent
+		border-bottom-width 14.142135px
+		border-bottom-color default-color
+	.box3
+		zero-content()
+		border 15px solid transparent
+		border-right-color default-color
+		border-bottom-color default-color
+	.box4
+		zero-content()
+		border 15px solid transparent
+		border-left-width 25px
+		border-right-width 5px
+		border-bottom-width 30px
+		border-bottom-color default-color
+	.box5
+		zero-content()
+		border 15px solid default-color
+	.box6
+		zero-content(20)
+		border 15px solid default-color
+	.box7
+		zero-content(15)
+		border 15px solid transparent
+		border-bottom-color default-color
+	.box8
+		zero-content(10)
+		border 20px solid transparent
+		border-right-width 10px
+		border-bottom-color default-color
+.circle
+	.box1
+		zero-content()
+		border 15px solid default-color
+		border-radius 100%
+	.box2
+		zero-content(20)
+		border 15px solid default-color
+		border-radius 100%
+	.box3
+		zero-content()
+		border 15px solid transparent
+		border-bottom-color default-color
+		border-radius 100%
+	.box4
+		zero-content()
+		border 15px solid default-color
+		border-top-color transparent
+		border-right-color transparent
+		border-radius 100%
+	.box5
+		zero-content()
+		border 15px solid default-color
+		border-right-color transparent
+		border-radius 100%
+	.box6
+		zero-content(15, 15)
+		border 8px solid default-color
+		border-radius 100%
+.star
+	zero-content()
+	border 10px solid transparent
+	border-left-width 20px
+	border-right-width 20px
+	border-top-color default-color
+	transform translate3d(0, 5px , 0)
+.star:before,
+.star:after
+	display block
+	zero-content()
+	border 10px solid transparent
+	border-top-width 20px
+	border-bottom-width 20px
+	content ''
+.star:before
+	border-left-color default-color
+	transform rotate3d(0, 0, 1, 25deg) translate3d(-18px, -15px , 0)
+.star:after
+	border-right-color default-color
+	transform rotate3d(0, 0, 1, -25deg) translate3d(15px, -60px , 0)
+.mogen
+	zero-content()
+	border 20px solid transparent
+	border-top-color default-color
+	transform translate3d(0, 25px , 0)
+.mogen:after
+	display block
+	zero-content()
+	border 20px solid transparent
+	border-bottom-color default-color
+	content ''
+	transform translate3d(-20px, -47px , 0)
