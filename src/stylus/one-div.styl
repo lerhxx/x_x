@@ -1,6 +1,10 @@
-zero-content(w = 0, h = 0)
+ele-content(w = 0, h = 0)
 	width unit(w, px)
 	height unit(h, px)
+
+border-radius()
+	-webkit-border-radius: arguments
+	border-radius: arguments
 
 default-color = #8a7e7e
 
@@ -12,104 +16,286 @@ body
 	& > div
 		display inline-block
 		margin 0 10px
+		vertical-align middle
 .rect
 	display table
 	.box1
-		zero-content()
+		ele-content()
 		border 20px solid transparent
 		border-bottom-width 25px
 		border-bottom-color default-color
 	.box2
-		zero-content()
+		ele-content()
 		border 20px solid transparent
 		border-bottom-width 14.142135px
 		border-bottom-color default-color
 	.box3
-		zero-content()
+		ele-content()
 		border 15px solid transparent
 		border-right-color default-color
 		border-bottom-color default-color
 	.box4
-		zero-content()
+		ele-content()
 		border 15px solid transparent
 		border-left-width 25px
 		border-right-width 5px
 		border-bottom-width 30px
 		border-bottom-color default-color
 	.box5
-		zero-content()
+		ele-content()
 		border 15px solid default-color
 	.box6
-		zero-content(20)
+		ele-content(20)
 		border 15px solid default-color
 	.box7
-		zero-content(15)
+		ele-content(15)
 		border 15px solid transparent
 		border-bottom-color default-color
 	.box8
-		zero-content(10)
+		ele-content(10)
 		border 20px solid transparent
 		border-right-width 10px
 		border-bottom-color default-color
 .circle
 	.box1
-		zero-content()
+		ele-content()
 		border 15px solid default-color
 		border-radius 100%
 	.box2
-		zero-content(20)
+		ele-content(20)
 		border 15px solid default-color
 		border-radius 100%
 	.box3
-		zero-content()
+		ele-content()
 		border 15px solid transparent
 		border-bottom-color default-color
 		border-radius 100%
 	.box4
-		zero-content()
+		ele-content()
 		border 15px solid default-color
 		border-top-color transparent
 		border-right-color transparent
 		border-radius 100%
 	.box5
-		zero-content()
+		ele-content()
 		border 15px solid default-color
 		border-right-color transparent
 		border-radius 100%
 	.box6
-		zero-content(15, 15)
+		ele-content(15, 15)
 		border 8px solid default-color
 		border-radius 100%
-.star
-	zero-content()
-	border 10px solid transparent
-	border-left-width 20px
-	border-right-width 20px
-	border-top-color default-color
-	transform translate3d(0, 5px , 0)
-.star:before,
-.star:after
-	display block
-	zero-content()
-	border 10px solid transparent
-	border-top-width 20px
-	border-bottom-width 20px
-	content ''
-.star:before
-	border-left-color default-color
-	transform rotate3d(0, 0, 1, 25deg) translate3d(-18px, -15px , 0)
-.star:after
-	border-right-color default-color
-	transform rotate3d(0, 0, 1, -25deg) translate3d(15px, -60px , 0)
-.mogen
-	zero-content()
-	border 20px solid transparent
-	border-top-color default-color
-	transform translate3d(0, 25px , 0)
-.mogen:after
-	display block
-	zero-content()
-	border 20px solid transparent
-	border-bottom-color default-color
-	content ''
-	transform translate3d(-20px, -47px , 0)
+.wrapper 
+	.star
+		ele-content()
+		border 10px solid transparent
+		border-left-width 20px
+		border-right-width 20px
+		border-top-color default-color
+		transform translate3d(0, 5px , 0)
+		&:before,
+		&:after
+			display block
+			ele-content()
+			border 10px solid transparent
+			border-top-width 20px
+			border-bottom-width 20px
+			content ''
+		&:before
+			border-left-color default-color
+			transform rotate3d(0, 0, 1, 25deg) translate3d(-18px, -15px , 0)
+		&:after
+			border-right-color default-color
+			transform rotate3d(0, 0, 1, -25deg) translate3d(15px, -60px , 0)
+	.mogen
+		ele-content()
+		border 20px solid transparent
+		border-top-color default-color
+		transform translate3d(0, 25px , 0)
+		&:after
+			display block
+			ele-content()
+			border 20px solid transparent
+			border-bottom-color default-color
+			content ''
+			transform translate3d(-20px, -47px , 0)
+	.nameless
+		ele-content()
+		border 15px solid default-color
+		border-top-color transparent
+	.grass
+		position relative
+		ele-content()
+		margin 0 20px
+		border 10px solid green
+		border-top-color transparent
+		&:before,
+		&:after
+			top -10px
+			position absolute
+			display inline-block
+			ele-content()
+			border 10px solid green
+			border-top-color transparent
+			content ''
+		&:before
+			left 10px
+		&:after
+			right 10px
+	.sandglass
+		ele-content(5)
+		border 15px solid default-color
+		border-left-color transparent
+		border-right-color transparent
+	.bowknot
+		position relative
+		ele-content(0, 5)
+		border 15px solid #fde8a8
+		border-top-color transparent
+		border-bottom-color transparent
+		border-radius 15px
+		&:after
+			position absolute
+			top -5px
+			left -2.5px
+			width 5px
+			height 15px
+			border-radius 100%
+			content: ''
+			background red
+	.axe
+		position relative
+		ele-content(0, 5)
+		border 15px solid #675353
+		border-top-color transparent
+		border-bottom-color transparent
+		border-radius 15px
+		&:after
+			position absolute
+			top -5px
+			left -3px
+			width 5px
+			height 30px
+			content: ''
+			background #e4bb41
+	.diamond
+		ele-content()
+		margin-bottom -25px
+		border 21px solid transparent
+		border-top-color #bfe7ef
+		&:before
+			display block
+			ele-content(16px)
+			border 13px solid transparent
+			border-bottom-color #bfe7ef
+			content ''
+			transform translate3d(-21px, -46px, 0)
+	.fox
+		ele-content(10)
+		margin-bottom 10px
+		border 15px solid #f5640a
+		border-top-color transparent
+		border-bottom-width 10px
+		&:after
+			display block
+			ele-content(8px)
+			border 16px solid transparent
+			border-top-color #f5640a
+			content ''
+			transform translate3d(-15px, 10px, 0)
+	.gold
+		position relative
+		ele-content(30, 30)
+		border-radius 100%
+		background-color #ffcc00
+		&:after
+			position absolute
+			top 50%
+			left 50%
+			ele-content(10, 10)
+			content ''
+			background-color #fff
+			transform translate3d(-50%, -50%, 0)
+	.pead
+		ele-content(10)
+		border 15px solid #f5640a
+		border-right-color transparent
+		border-radius 100%
+		&:after
+			display block
+			ele-content(8, 8)
+			content ''
+			background-color #fff
+			border-radius 100%
+			transform translateY(-10px)
+	.ice-cream
+		ele-content(0)
+		margin-bottom -15px
+		border 12px solid transparent
+		border-top-color #f1d29d
+		border-top-width 25px
+		&:before,
+		&:after
+			display block
+			content ''
+			background #bf8416
+		&:before
+			ele-content(11, 11)
+			border-radius 100%
+			transform translate3d(-13px, -40px, 0)
+		&:after
+			ele-content(20, 10)
+			border-radius 50% / 100% 100% 0 0
+			transform translate3d(-10px, -47px, 0)
+	.smelly
+		ele-content(26, 10)
+		margin-top 30px
+		background-color #bf8416
+		border-radius 15px / 100%
+		&:before,
+		&:after
+			display block
+			background-color #bf8416
+			content ''
+		&:before
+			ele-content(12, 12)
+			border-radius 4px
+			transform translate3d(7px, -7px, 0) rotateZ(45deg)
+		&:after
+			ele-content(36, 13)
+			border-radius 20px / 100%
+			transform translate3d(-5px, -4px, 0)
+	.filler
+		ele-content()
+		margin-bottom -35px
+		border 15px solid transparent
+		border-top-color red
+		border-top-width 20px
+		&:before,
+		&:after
+			display block
+			content ''
+		&:before
+			ele-content(4px, 15px)
+			background-color red
+			transform translate3d(-2px, -5px, 0)
+		&:after
+			ele-content()
+			border 2px solid transparent
+			border-right-color red
+			border-right-width 4px
+			transform translate3d(-4px, -7px, 0)
+	.cola
+		margin-bottom -10px
+		ele-content(8, 15)
+		border 2px solid black
+		border-right-color transparent
+		border-bottom-color transparent
+		&:before
+			display block
+			ele-content(18)
+			border 3px solid transparent
+			border-top-color #d83636
+			border-top-width 28px
+			content ''
+			transform translate3d(-15px, 6px, 0)
