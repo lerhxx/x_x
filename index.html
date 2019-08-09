@@ -1,233 +1,262 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>x_x by xuehuan</title>
     <link rel="stylesheet" href="./dist/css/index.css">
-  </head>
-  <body>
-    <!-- <nav class='navbar'>
-      <ul>
-        <li>
-          <a href="#intro">介绍</a>
-        </li>
-        <li>
-          <a href="#project">项目</a>
-        </li>
-        <li>
-          <a href="#translate">翻译</a>
-        </li>
-        <li>
-          <a href="#experience">实习经验</a>
-        </li>
-        <li>
-          <a href="#contact">联系方式</a>
-        </li>
-      </ul>
-    </nav> -->
+    <link rel="stylesheet" href="./dist/css/iconfont.css">
+</head>
+
+<body>
     <div class='contain'>
-      <section class='section intro'>
-          <h2 id='intro'>介绍</h2>
-          <p>前端技术在不断地更新，让我感受到了前端的活力，也是我喜欢前端开发的原因。希望能够接触更多有趣的、挑战性的工作。</p>
-      </section>
-      <section class='section projects'>
-        <h2 id='project'>项目</h2>
-        <div class='item-wrapper imgresizer'>
-          <div class='content'>
-            <h3 class='title'>
-              <a href='https://github.com/lerhxx/imgProcessing' target='_blank'>imgProcessing</a>
-            </h3>
-            <p style='text-align: center'>
-              <a href='https://lerhxx.github.io/imgProcessing/index.html' target='_blank'>Chrome扩展——图片裁剪压缩</a>
-            </p>
-          </div>
-        </div>
-        <div class='item-wrapper detector'>
-          <div class='content'>
-            <h3 class='title'>
-              <a href='https://lerhxx.github.io/shapDetector/shapeDetector.html' target='_blank'>Shape Detector API</a>
-            </h3>
-            <p style='text-align: center'>
-              <a href='https://lerhxx.github.io/shapDetector/shapeDetector.html' target='_blank'>面部标记 Demo</a>
-            </p>
-            <p style='text-align: center'>
-              <a href='https://lerhxx.github.io/shapDetector/video.html' target='_blank'>video标记 Demo</a>
-            </p>
-          </div>
-        </div>
-        <div class='item-wrapper goBang'>
-          <div class='content'>
-            <h3 class='title'>
-              <a href='https://lerhxx.github.io/canvas/gobang/canvas.html' target='_blank'>五子棋</a>
-            </h3>
-            <p style='text-align: center'>
-              <a href='https://lerhxx.github.io/canvas/gobang/canvas.html' target='_blank'>canvas实现效果。</a>
-            </p>
-            <p style='text-align: center'>
-              <a href='https://lerhxx.github.io/canvas/gobang/dom.html' target='_blank'>dom实现效果。</a>
-            </p>
-          </div>
-        </div>
-        <div class='item-wrapper match'>
-          <div class='content'>
-            <h3 class='title'>
-              <a href='https://lerhxx.github.io/canvas/maze/match.html' target='_blank'>翻牌小游戏</a>
-            </h3>
-            <p>
-              canvas小游戏，Math.cos改变卡片宽度，模拟3D翻转效果。
-            </p>
-          </div>
-        </div>
-        <div class='item-wrapper teach'>
-          <div class='content'>
-            <h3 class='title'>
-              <a href='https://github.com/lerhxx/teaching-activities/tree/master/design' target='_blank'>教研活动管理系统</a>
-            </h3>
-            <p>
-              毕业设计，Vue搭建SPA，express实现REST接口。
-            </p>
-          </div>
-        </div>
-        <div class='item-wrapper calendar'>
-          <div class='content'>
-            <h3 class='title'>
-              <a href='https://lerhxx.github.io/vue-datepicker/index.html' target='_blank'>自定义日历插件</a>
-            </h3>
-            <p>
-              基于vue开发的自定义日历开发。
-            </p>
-          </div>
-        </div>
-        <div class='item-wrapper maze'>
-          <div class='content'>
-            <h3 class='title'>
-              <a href='https://lerhxx.github.io/canvas/maze/filePath.html' target='_blank'>迷宫</a>
-            </h3>
-            <p>
-              普利姆随机生成迷宫，A*寻找任意两点间路线。
-            </p>
-          </div>
-        </div>
-        <div class='item-wrapper particle'>
-          <div class='content'>
-            <h3 class='title'>
-              <a href='https://lerhxx.github.io/canvas/maze/match.html' target='_blank'>粒子系统</a>
-            </h3>
-            <p>
-              随机生成粒子，相近的粒子相互连线，鼠标可控制一颗粒子的移动。
-            </p>
-          </div>
-        </div>
-        <div class='item-wrapper overall'>
-          <div class='content'>
-            <h3 class='title'>
-              <a href='https://lerhxx.github.io/x_x/photo-sphere-viewer.html' target='_blank'>3D 全景</a>
-            </h3>
-            <p>
-              基于photo-sphere-viewer.js开发的 3D 全景图，可全屏、自动/手动旋转。
-            </p>
-          </div>
-        </div>
-      </section>
-      <section class='section translate'>
-        <h2 id='translate'>翻译</h2>
-        <div class='item'>
-          <div class='logo webgl-logo'></div><ul class='list'>
-            <li>
-              <a target='_blank' href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-2D-vs-3D-libraries.md'>WebGL－栅格化 vs 3D 库</a>
-            </li>
-            <li>
-              <a target='_blank' href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-3D-Textures.md'>WebGL 3D - 纹理</a>
-            </li>
-            <li>
-              <a target='_blank' href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-Animation.md'>WebGL－动画</a>
-            </li>
-            <li>
-              <a target='_blank' href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-Anti-Patterns.md'>WebGL反模式</a>
-            </li>
-            <li>
-              <a target='_blank' href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-Boilerplate.md'>WebGL示例</a>
-            </li>
-            <li>
-              <a target='_blank' href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-Resizing-the-Canvas.md'>WebGL调整 Canvas 尺寸</a>
-            </li>
-            <li>
-              <a target='_blank' href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-Setup-And-Installation.md'>WebGL的设置与安装</a>
-            </li>
-            <li>
-              <a target='_blank' href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-Using-2-or-More-Textures.md'>WebGL使用两个以上纹理</a>
-            </li>
-            <li>
-              <a target='_blank' href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-and-Alpha.md'>WebGL和 Alpha</a>
-            </li>
-          </ul>
-        </div>
-        <div class='item'>
-          <div class='logo zcfy-logo'></div><ul class='list'>
-            <li>
-              <a target='_blank' href='http://zcfy.cc/article/understanding-the-critical-rendering-path-2452.html'>理解关键渲染路径</a>
-            </li>
-            <li>
-              <a target='_blank' href='http://zcfy.cc/article/vue-vuex-getting-started-matt-bradford-medium-2415.html'>Vue + Vuex — 入门 – Matt Bradford – 中级</a>
-            </li>
-            <li>
-              <a target='_blank' href='http://zcfy.cc/article/reactive-audio-webvr-css-tricks-2276.html'>WebVR 响应式音频 | CSS-Tricks</a>
-            </li>
-            <li>
-              <a target='_blank' href='http://zcfy.cc/article/polygon-feature-design-svg-animations-for-fun-and-profit-vox-product-blog-2197.html'>Polygon 的设计： SVG 动画的乐趣与益处</a>
-            </li>
-            <li>
-              <a target='_blank' href='http://zcfy.cc/article/machine-learning-full-text-search-in-javascript-part-1-relevance-scoring-2128.html'>机器学习：JavaScript全文搜索（第一部分：关联得分）</a>
-            </li>
-            <li>
-              <a target='_blank' href='http://zcfy.cc/article/hey-poker-face-8212-this-wi-fi-router-can-read-your-emotions-2102.html'>嘿，扑克脸 — 这个 Wi-Fi 路由可以知道你的情绪</a>
-            </li>
-            <li>
-              <a target='_blank' href='http://zcfy.cc/article/the-beginner-s-guide-to-three-js-3370.html'>three.js 新手指南</a>
-            </li>
-            <!--<li>
-            </li>-->
-              <a target='_blank' href='http://zcfy.cc/@lerhxx/article' class='more'>更多</a>
-          </ul>
-        </div>
-      </section>
-      <section class='section exper'>
-        <h2 id='experience'>实习经验</h2>
-        <div class='item'>
-          <h3>网易游戏</h3>
-          <p class='time'>时间：2016.12-2017.06</p>
-          <p>主要负责CC直播平台PC客户端Web页面开发，技术栈：vue+sass+gulp。以及主播助手的维护、更新（jquery）。</p>
-        </div>
-        <div class='item'>
-          <h3>腾讯</h3>
-          <p class='time'>时间：2016.07-2017.09</p>
-          <p>主要负责qq空间移动端页面重构;实现动画效果,如好友纪念日等；主动提出优化方案。</p>
-        </div>
-        <div class='item'>
-          <h3>广州唯陌科技有限公司</h3>
-          <p class='time'>时间：2016.12-2017.6</p>
-          <p>公司主要产品为搜车位。我主要负责搜车位的后台管理系统的端前端开发，实现数据可视化、地图定位等。官网页面开发，兼容移动端。</p>
-        </div>
-      </section>
-      <section class='section touch'>
-        <h2 id='contact'>联系方式</h2>
-        <div style='display: flex;'>
-          <div class='item'>
-            <img src='./dist/imgs/github.png' />
-            <a href='https://github.com/lerhxx' title='github'>https://github.com/lerhxx</a>
-          </div>
-          <div class='item'>
-            <img src='./dist/imgs/blog.png' />
-            <a href='http://www.cnblogs.com/xxhuan/' title='blog'>http://www.cnblogs.com/xxhuan/</a>
-          </div>
-          <div class='item'>
-            <img src='./dist/imgs/gmail.png' />
-            <span>hxuehuan@gmail.com</span>
-          </div>
-        </div>
-      </section>
+        <section class='section intro'>
+            <div class='intro__left'>
+                <div class='avatar'></div>
+                <p class='intro-content'>前端技术在不断地更新，让我感受到了前端的活力，也是我喜欢前端开发的原因。希望能够接触更多有趣的、挑战性的工作。</p>
+            </div>
+            <div class='intro__right touch'>
+                <div class='item touch-item-wrap'>
+                    <a href='https://github.com/lerhxx' title='github' class='touch-icon iconfont icon-github'></a>
+                </div>
+                <div class='item touch-item-wrap''>
+                    <a href=' http://www.cnblogs.com/xxhuan/' title='blog' class='touch-icon iconfont icon-blog'></a>
+                </div>
+                <div class='item item-block'>
+                    <span class='item-label'>Email: </span>
+                    <span class='item-content-text'>hxuehuan@gmail.com</span>
+                </div>
+            </div>
+        </section>
+        <section class='section projects'>
+            <h2 class='section__left section-label' id='project'>项目</h2>
+            <div class='section__content'>
+                <div class='item-wrapper imgresizer'>
+                    <div class='content'>
+                        <h3 class='title'>
+                            <a href='https://github.com/lerhxx/imgProcessing' target='_blank'>imgProcessing</a>
+                        </h3>
+                        <p style='text-align: center'>
+                            <a href='https://lerhxx.github.io/imgProcessing/index.html'
+                                target='_blank'>Chrome扩展——图片裁剪压缩</a>
+                        </p>
+                    </div>
+                </div>
+                <div class='item-wrapper detector'>
+                    <div class='content'>
+                        <h3 class='title'>
+                            <a href='https://lerhxx.github.io/shapDetector/shapeDetector.html' target='_blank'>Shape
+                                Detector API</a>
+                        </h3>
+                        <p style='text-align: center'>
+                            <a href='https://lerhxx.github.io/shapDetector/shapeDetector.html' target='_blank'>面部标记
+                                Demo</a>
+                        </p>
+                        <p style='text-align: center'>
+                            <a href='https://lerhxx.github.io/shapDetector/video.html' target='_blank'>video标记 Demo</a>
+                        </p>
+                    </div>
+                </div>
+                <div class='item-wrapper goBang'>
+                    <div class='content'>
+                        <h3 class='title'>
+                            <a href='https://lerhxx.github.io/canvas/gobang/canvas.html' target='_blank'>五子棋</a>
+                        </h3>
+                        <p style='text-align: center'>
+                            <a href='https://lerhxx.github.io/canvas/gobang/canvas.html' target='_blank'>canvas实现效果。</a>
+                        </p>
+                        <p style='text-align: center'>
+                            <a href='https://lerhxx.github.io/canvas/gobang/dom.html' target='_blank'>dom实现效果。</a>
+                        </p>
+                    </div>
+                </div>
+                <div class='item-wrapper match'>
+                    <div class='content'>
+                        <h3 class='title'>
+                            <a href='https://lerhxx.github.io/canvas/maze/match.html' target='_blank'>翻牌小游戏</a>
+                        </h3>
+                        <p>
+                            canvas小游戏，Math.cos改变卡片宽度，模拟3D翻转效果。
+                        </p>
+                    </div>
+                </div>
+                <div class='item-wrapper teach'>
+                    <div class='content'>
+                        <h3 class='title'>
+                            <a href='https://github.com/lerhxx/teaching-activities/tree/master/design'
+                                target='_blank'>教研活动管理系统</a>
+                        </h3>
+                        <p>
+                            毕业设计，Vue搭建SPA，express实现REST接口。
+                        </p>
+                    </div>
+                </div>
+                <div class='item-wrapper calendar'>
+                    <div class='content'>
+                        <h3 class='title'>
+                            <a href='https://lerhxx.github.io/vue-datepicker/index.html' target='_blank'>自定义日历插件</a>
+                        </h3>
+                        <p>
+                            基于vue开发的自定义日历开发。
+                        </p>
+                    </div>
+                </div>
+                <div class='item-wrapper maze'>
+                    <div class='content'>
+                        <h3 class='title'>
+                            <a href='https://lerhxx.github.io/canvas/maze/filePath.html' target='_blank'>迷宫</a>
+                        </h3>
+                        <p>
+                            普利姆随机生成迷宫，A*寻找任意两点间路线。
+                        </p>
+                    </div>
+                </div>
+                <div class='item-wrapper particle'>
+                    <div class='content'>
+                        <h3 class='title'>
+                            <a href='https://lerhxx.github.io/canvas/maze/match.html' target='_blank'>粒子系统</a>
+                        </h3>
+                        <p>
+                            随机生成粒子，相近的粒子相互连线，鼠标可控制一颗粒子的移动。
+                        </p>
+                    </div>
+                </div>
+                <div class='item-wrapper overall'>
+                    <div class='content'>
+                        <h3 class='title'>
+                            <a href='https://lerhxx.github.io/x_x/photo-sphere-viewer.html' target='_blank'>3D 全景</a>
+                        </h3>
+                        <p>
+                            基于photo-sphere-viewer.js开发的 3D 全景图，可全屏、自动/手动旋转。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class='section translate'>
+            <h2 class='section__left section-label' id='translate'>翻译</h2>
+            <div class='section__content'>
+                <div class='item'>
+                    <div class='logo webgl-logo'></div>
+                    <ul class='list'>
+                        <li>
+                            <a target='_blank'
+                                href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-2D-vs-3D-libraries.md'>WebGL－栅格化
+                                vs 3D 库</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-3D-Textures.md'>WebGL
+                                3D - 纹理</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-Animation.md'>WebGL－动画</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-Anti-Patterns.md'>WebGL反模式</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-Boilerplate.md'>WebGL示例</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-Resizing-the-Canvas.md'>WebGL调整
+                                Canvas 尺寸</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-Setup-And-Installation.md'>WebGL的设置与安装</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-Using-2-or-More-Textures.md'>WebGL使用两个以上纹理</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='https://github.com/lerhxx/webgl-fundamentals-zh/blob/master/misc/WebGL-and-Alpha.md'>WebGL和
+                                Alpha</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class='item'>
+                    <div class='logo zcfy-logo'></div>
+                    <ul class='list'>
+                        <li>
+                            <a target='_blank'
+                                href='http://zcfy.cc/article/understanding-the-critical-rendering-path-2452.html'>理解关键渲染路径</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='http://zcfy.cc/article/vue-vuex-getting-started-matt-bradford-medium-2415.html'>Vue
+                                + Vuex — 入门 – Matt Bradford – 中级</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='http://zcfy.cc/article/reactive-audio-webvr-css-tricks-2276.html'>WebVR 响应式音频 |
+                                CSS-Tricks</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='http://zcfy.cc/article/polygon-feature-design-svg-animations-for-fun-and-profit-vox-product-blog-2197.html'>Polygon
+                                的设计： SVG 动画的乐趣与益处</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='http://zcfy.cc/article/machine-learning-full-text-search-in-javascript-part-1-relevance-scoring-2128.html'>机器学习：JavaScript全文搜索（第一部分：关联得分）</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='http://zcfy.cc/article/hey-poker-face-8212-this-wi-fi-router-can-read-your-emotions-2102.html'>嘿，扑克脸
+                                — 这个 Wi-Fi 路由可以知道你的情绪</a>
+                        </li>
+                        <li>
+                            <a target='_blank'
+                                href='http://zcfy.cc/article/the-beginner-s-guide-to-three-js-3370.html'>three.js
+                                新手指南</a>
+                        </li>
+                        <!--<li>
+                </li>-->
+                        <a target='_blank' href='http://zcfy.cc/@lerhxx/article' class='more'>更多</a>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class='section exper'>
+            <h2 class='section-label' id='experience'>实习经验</h2>
+            <div class='section__content'>
+                <div class='item'>
+                    <h3 class='item-label'>网易游戏</h3>
+                    <div class='item-content'>
+                        <p class='time'>时间：2016.12-2017.06</p>
+                        <p>主要负责CC直播平台PC客户端Web页面开发，技术栈：vue+sass+gulp。以及主播助手的维护、更新（jquery）。</p>
+                    </div>
+                </div>
+                <div class='item'>
+                    <h3 class='item-label'>腾讯</h3>
+                    <div class='item-content'>
+                        <p class='time'>时间：2016.07-2017.09</p>
+                        <p>主要负责qq空间移动端页面重构;实现动画效果,如好友纪念日等；主动提出优化方案。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class='section exper'>
+            <h2 class='section-label' id='experience'>工作经验</h2>
+            <div class='section__content'>
+                <div class='item'>
+                    <h3 class='item-label'>阿米巴有限公司</h3>
+                    <div class='item-content'>
+                        <p class='time'>时间：2017.10-至今</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-  </body>
+</body>
+
 </html>

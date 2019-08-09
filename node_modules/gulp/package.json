@@ -1,9 +1,9 @@
 {
   "name": "gulp",
-  "version": "4.0.2",
+  "version": "4.0.0",
   "description": "The streaming build system.",
-  "homepage": "https://gulpjs.com",
-  "author": "Gulp Team <team@gulpjs.com> (https://gulpjs.com/)",
+  "homepage": "http://gulpjs.com",
+  "author": "Gulp Team <team@gulpjs.com> (http://gulpjs.com/)",
   "contributors": [
     "Eric Schoffstall <yo@contra.io>",
     "Blaine Bublitz <blaine.bublitz@gmail.com>"
@@ -23,27 +23,29 @@
     "gulp": "./bin/gulp.js"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint . && jscs index.js bin/ test/",
     "pretest": "npm run lint",
-    "test": "nyc mocha --async-only",
-    "azure-pipelines": "nyc mocha --async-only --reporter xunit -O output=test.xunit",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "test": "mocha --async-only",
+    "cover": "istanbul cover _mocha --report lcovonly",
+    "coveralls": "npm run cover && istanbul-coveralls"
   },
   "dependencies": {
-    "glob-watcher": "^5.0.3",
-    "gulp-cli": "^2.2.0",
-    "undertaker": "^1.2.1",
+    "glob-watcher": "^5.0.0",
+    "gulp-cli": "^2.0.0",
+    "undertaker": "^1.0.0",
     "vinyl-fs": "^3.0.0"
   },
   "devDependencies": {
-    "coveralls": "github:phated/node-coveralls#2.x",
-    "eslint": "^2.13.1",
-    "eslint-config-gulp": "^3.0.1",
+    "eslint": "^1.7.3",
+    "eslint-config-gulp": "^2.0.0",
     "expect": "^1.20.2",
+    "istanbul": "^0.4.3",
+    "istanbul-coveralls": "^1.0.3",
+    "jscs": "^2.3.5",
+    "jscs-preset-gulp": "^1.0.0",
     "mkdirp": "^0.5.1",
     "mocha": "^3.0.0",
-    "nyc": "^10.3.2",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.2.5"
   },
   "keywords": [
     "build",
