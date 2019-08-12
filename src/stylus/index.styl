@@ -16,7 +16,8 @@ body,
 p,
 h2,
 h3,
-ul
+ul,
+ol
 	padding 0
 	margin 0
 ul
@@ -124,6 +125,8 @@ a
 		display block
 	&__content
 		padding 30px 0
+		&-link-wrap
+			text-align left
 	&-label
 		display block
 		padding 10px 0
@@ -180,6 +183,10 @@ a
 .projects
 	text-align center
 	overflow hidden
+	&-label
+		display block
+		text-align left
+		vertical-align top
 	.item-wrapper
 		display inline-block
 		width 250px
