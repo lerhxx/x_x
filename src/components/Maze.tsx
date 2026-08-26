@@ -3,7 +3,6 @@ import type { ReactNode } from 'react';
 import type { MazeData, PathCell, PathDirection } from '../game/types';
 import { CELL_SCALE } from '../constants/global';
 import { ExitPortal } from './ExitPortal';
-import { LightBeam } from './LightBeam';
 import { GrassCellsRenderer as GrassCells } from './GrassCells';
 import {
   InteriorTreesCells,
@@ -236,7 +235,7 @@ export function MazeEnvironment({ maze }: MazeEnvironmentProps) {
   const { width: w, height: h } = maze;
 
   // 用 findScenePlacements 查找场景放置点（先算，后面 grass/树需要用 occupiedCells 过滤）
-  const { contentMap, occupiedCells, scenePathCells } = useMemo(() => {
+  const { contentMap, occupiedCells } = useMemo(() => {
     const pathLen = maze.solutionPath?.length ?? 0;
     if (pathLen < 10) return { contentMap: new Map<string, ReactNode>(), occupiedCells: new Set<string>(), scenePathCells: [] as Array<{ c: number; r: number }> };
     const step = 5 / pathLen;
@@ -268,7 +267,7 @@ export function MazeEnvironment({ maze }: MazeEnvironmentProps) {
       {
         pathFraction: 1 / 4 + step * 3,
         length: 1,
-        descriptionId: 17,
+        descriptionId: 'amiba',
         generateContent: (position, rotationY, size, label, pathCells, descriptionId) => (
           <Amiba position={position} size={size * 0.75} rotationY={rotationY} label={label} descriptionId={descriptionId} pathCells={pathCells} />
         ),

@@ -103,22 +103,13 @@ export const EnvelopeLine: React.FC<MorphParticlesProps> = ({
     const targets = targetRef.current;
     const factors = speedFactorRef.current;
 
-    let isComplete = true;
     for (let i = 0; i < positions.length; i++) {
       // 每个粒子独立速度 = 基础速度 * 随机倍率
       const step = speed * factors[Math.floor(i / 3)];
       // 当前位置向目标位置插值
       positions[i] += (targets[i] - positions[i]) * step;
-      
-      // 判断是否接近目标（用于后续状态切换）
-      if (Math.abs(positions[i] - targets[i]) > 0.001) {
-        isComplete = false;
-      }
     }
     pointsRef.current.geometry.attributes.position.needsUpdate = true;
-
-    // 如果全部汇聚完成，可以触发回调或播放下一阶段动画（可选）
-    // if (isComplete) { console.log('Converged!'); }
   });
 
   // ---------- 4. 渲染粒子 ----------
@@ -127,9 +118,7 @@ export const EnvelopeLine: React.FC<MorphParticlesProps> = ({
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={particleCount}
-          array={new Float32Array(particleCount * 3)}
-          itemSize={3}
+          args={[new Float32Array(particleCount * 3), 3]}
         />
       </bufferGeometry>
       <pointsMaterial

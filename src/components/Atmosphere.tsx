@@ -305,10 +305,12 @@ export function StartArch({ maze, textures }: StartArchProps) {
   const archHeight = WALL_HEIGHT * 1.6;
   const archWidth = 1.1;
 
-  // Pick arch orientation based on which side has an opening
-  const startCell = maze.cells[maze.startCol][maze.startRow];
+  // Pick arch orientation based on which side has an opening.
+  // 扩展网格中相邻格为墙槽，type === 'path' 表示该方向有开口。
+  const N = maze.startRow > 0 ? maze.cells[maze.startCol][maze.startRow - 1].type : 'wall';
+  const S = maze.startRow < maze.height - 1 ? maze.cells[maze.startCol][maze.startRow + 1].type : 'wall';
   // Orient arch along whichever axis is "open" (no wall) — default to X axis
-  const alongX = !startCell.walls.N || !startCell.walls.S;
+  const alongX = N === 'path' || S === 'path';
   const rotation: [number, number, number] = alongX ? [0, 0, 0] : [0, Math.PI / 2, 0];
 
   return (

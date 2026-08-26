@@ -107,9 +107,6 @@ export function Envelope({
   yOffRef.current = offsetY;
   baseRotRef.current = rotationY;
 
-  // 右上角气泡框：纯 HTML 元素，背景 bubble.png，文字 E
-  const bubbleSize = Math.max(0.22, size * 0.8);
-
   return (
     <group position={position}>
       <group ref={groupRef} scale={normalizeScale}>

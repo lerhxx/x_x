@@ -7,12 +7,7 @@ import * as THREE from 'three';
  * EnvelopeLine2 — 粉色信封粒子线框（GLSL 版）
  *
  * 信封形状直接硬编码为 SVG 字符串，同步解析提取轮廓点。
- * 无需异步加载图片，无需 Sobel 边缘检测。
- *
- * 相机触发（第一人称）：
- *   - 光柱出现在相机画面内 → 粒子汇聚成信封
- *   - 光柱移出画面 → 粒子散开
- *   - 距离过远 → 不渲染（省性能）
+ * 加载后粒子直接汇聚成信封形状，无散开→汇聚动画。
  * ============================================================ */
 
 // ---------- 硬编码 SVG 信封形状（来自 public/envelope.svg） ----------
@@ -55,16 +50,46 @@ function buildEnvelopeData(maxCount: number): ParticleData {
   const loader = new SVGLoader();
   const data = loader.parse(ENVELOPE_SVG);
 
-  const extractedPoints: { x: number; y: number }[] = [];
+  // 先收集所有子路径及其长度，按长度等比分配采样点
+  const subPathData: { subPath: any; length: number }[] = [];
   data.paths.forEach((shapePath: any) => {
     if (!shapePath.subPaths) return;
     shapePath.subPaths.forEach((subPath: any) => {
       const pts = subPath.getPoints(200);
-      pts.forEach((p: any) => {
-        extractedPoints.push({ x: p.x, y: p.y });
-      });
+      // 计算子路径长度
+      let len = 0;
+      for (let i = 1; i < pts.length; i++) {
+        const dx = pts[i].x - pts[i - 1].x;
+        const dy = pts[i].y - pts[i - 1].y;
+        len += Math.sqrt(dx * dx + dy * dy);
+      }
+      subPathData.push({ subPath, length: len });
     });
   });
+
+  const totalLength = subPathData.reduce((s, d) => s + d.length, 0);
+  const TOTAL_SAMPLES = 120; // 总采样点数
+  const rawPoints: { x: number; y: number }[] = [];
+  for (const { subPath, length } of subPathData) {
+    const n = Math.max(2, Math.round((length / totalLength) * TOTAL_SAMPLES));
+    const pts = subPath.getPoints(n);
+    pts.forEach((p: any) => {
+      rawPoints.push({ x: p.x, y: p.y });
+    });
+  }
+
+  // 按最小间距去重，保证整条轮廓密度均匀
+  const MIN_DIST_SQ = 80; // SVG 坐标系下的最小间距平方
+  const extractedPoints: { x: number; y: number }[] = [];
+  for (const p of rawPoints) {
+    let tooClose = false;
+    for (const q of extractedPoints) {
+      const dx = p.x - q.x;
+      const dy = p.y - q.y;
+      if (dx * dx + dy * dy < MIN_DIST_SQ) { tooClose = true; break; }
+    }
+    if (!tooClose) extractedPoints.push(p);
+  }
 
   if (extractedPoints.length === 0) {
     throw new Error('SVG 解析未提取到轮廓点');
@@ -104,18 +129,11 @@ function buildEnvelopeData(maxCount: number): ParticleData {
     // 目标位置（汇聚态）：归一化 + 居中 + Y 轴反转
     const tx = (p.x - centerX) * scale;
     const ty = -(p.y - centerY) * scale;
-    const tz = (rnd() - 0.5) * 0.05;
+    const tz = 0;
     targets.push(tx, ty, tz);
 
-    // 散开态：目标周围球壳，半径 1.5~3.0（归一化单位，组件按 size 缩放）
-    const r = 1.5 + rnd() * 1.5;
-    const theta = rnd() * Math.PI * 2;
-    const phi = Math.acos(2 * rnd() - 1);
-    positions.push(
-      tx + r * Math.sin(phi) * Math.cos(theta),
-      ty + r * Math.sin(phi) * Math.sin(theta),
-      tz + r * Math.cos(phi),
-    );
+    // position 直接等于 target（加载即汇聚）
+    positions.push(tx, ty, tz);
 
     randoms.push(rnd());
   }
@@ -134,7 +152,6 @@ function buildEnvelopeData(maxCount: number): ParticleData {
 
 const vertexShader = /* glsl */ `
   uniform float uTime;
-  uniform float uProgress;
   uniform float uSize;
   uniform float uPixelRatio;
 
@@ -145,27 +162,19 @@ const vertexShader = /* glsl */ `
   varying vec3 vColor;
   varying float vAlpha;
 
-  float easeOutBack(float x) {
-    float c1 = 1.70158;
-    float c3 = c1 + 1.0;
-    return 1.0 + c3 * pow(x - 1.0, 3.0) + c1 * pow(x - 1.0, 2.0);
-  }
-
   void main() {
-    float phase = clamp(uProgress * 1.6 - aRandom * 0.6, 0.0, 1.0);
-    float t = easeOutBack(phase);
-    vec3 pos = mix(position, aTarget, t);
+    vec3 pos = aTarget;
 
-    // 散开态微浮动，汇聚后稳定
-    float breathe = sin(uTime * 1.6 + aRandom * 6.2831);
-    pos += vec3(breathe, breathe * 0.7, breathe) * 0.06 * (1.0 - t);
+    // 微浮动
+    // float breathe = sin(uTime * 1.6 + aRandom * 6.2831);
+    // pos += vec3(breathe, breathe * 0.7, breathe) * 0.004;
 
     vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
     gl_PointSize = uSize * (0.45 + aRandom * 0.9) * uPixelRatio * (240.0 / -mvPosition.z);
     gl_Position = projectionMatrix * mvPosition;
 
     vColor = aColor;
-    vAlpha = 0.50 + 0.50 * smoothstep(0.0, 0.12, t);
+    vAlpha = 1.0;
   }
 `;
 
@@ -177,12 +186,12 @@ const fragmentShader = /* glsl */ `
     vec2 uv = gl_PointCoord - 0.5;
     float d = length(uv);
 
-    float core = 1.0 - smoothstep(0.35, 0.45, d);
-    float glow = exp(-d * 9.0) * 0.30;
+    float core = 1.0 - smoothstep(0.15, 0.25, d);
+    float glow = exp(-d * 18.0) * 0.10;
     float alpha = (core + glow) * vAlpha;
     if (alpha < 0.004) discard;
 
-    vec3 col = vColor * (1.0 + 1.5 * glow);
+    vec3 col = vColor * (0.5 + glow);
     gl_FragColor = vec4(col, alpha);
   }
 `;
@@ -198,26 +207,15 @@ export interface EnvelopeLineProps {
   maxCount?: number;
   /** 主色（默认粉色） */
   color?: string;
-  /** 汇聚/散开过渡速度 */
-  transitionSpeed?: number;
 }
-
-// 每帧复用的临时向量
-const _dir = new THREE.Vector3();
-const _toEnv = new THREE.Vector3();
-const _worldCenter = new THREE.Vector3();
-const _proj = new THREE.Vector3();
 
 export function EnvelopeLine({
   position = [0, 0, 0],
-  size = 0.6,
+  size = 0.15,
   maxCount = 4000,
   color = '#ff8cc8',
-  transitionSpeed = 2.4,
 }: EnvelopeLineProps) {
   const groupRef = useRef<THREE.Group>(null);
-  const progressRef = useRef(0);
-  const readyAtRef = useRef<number | null>(null);
   const geometryRef = useRef<THREE.BufferGeometry | null>(null);
   const materialRef = useRef<THREE.ShaderMaterial | null>(null);
 
@@ -239,20 +237,17 @@ export function EnvelopeLine({
 
     const norm = size / Math.max(data.worldW, data.worldH);
     const positions = new Float32Array(data.positions.length);
-    const targets = new Float32Array(data.targets.length);
-    for (let i = 0; i < targets.length; i += 3) {
+    for (let i = 0; i < positions.length; i += 3) {
       positions[i] = data.positions[i] * norm;
       positions[i + 1] = data.positions[i + 1] * norm;
       positions[i + 2] = data.positions[i + 2] * norm;
-      targets[i] = data.targets[i] * norm;
-      targets[i + 1] = data.targets[i + 1] * norm;
-      targets[i + 2] = data.targets[i + 2] * norm;
     }
     g.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    g.setAttribute('aTarget', new THREE.BufferAttribute(targets, 3));
+    g.setAttribute('aTarget', new THREE.BufferAttribute(positions, 3));
 
     const colors = new Float32Array(data.count * 3);
     for (let i = 0; i < data.count; i++) {
+      // const shade = 0.82 + 0.36 * data.randoms[i];
       const shade = 0.82 + 0.36 * data.randoms[i];
       colors[i * 3] = baseColor.r * shade;
       colors[i * 3 + 1] = baseColor.g * shade;
@@ -262,11 +257,10 @@ export function EnvelopeLine({
     g.setAttribute('aRandom', new THREE.BufferAttribute(data.randoms, 1));
 
     geometryRef.current = g;
-    readyAtRef.current = null;
     return g;
   }, [data, size, baseColor]);
 
-  // 3) material（粒子点大小 0.28）
+  // 3) material
   const material = useMemo(() => {
     const m = new THREE.ShaderMaterial({
       vertexShader,
@@ -276,8 +270,7 @@ export function EnvelopeLine({
       blending: THREE.AdditiveBlending,
       uniforms: {
         uTime: { value: 0 },
-        uProgress: { value: 0 },
-        uSize: { value: 0.28 },
+        uSize: { value: 0.03 },
         uPixelRatio: { value: Math.min(window.devicePixelRatio || 1, 2) },
       },
     });
@@ -293,53 +286,10 @@ export function EnvelopeLine({
     };
   }, []);
 
-  // 4) 相机触发：光柱投影出现在画面内 → 汇聚；移出画面 → 散开
-  useFrame((state, delta) => {
-    const group = groupRef.current;
-    if (!group || !geometryRef.current) return;
-    const t = state.clock.elapsedTime;
-    const dt = Math.min(delta, 0.05);
-    const camera = state.camera;
-
-    // 信封世界中心
-    group.getWorldPosition(_worldCenter);
-
-    // 相机前向 + 相机→信封方向
-    camera.getWorldDirection(_dir);
-    _toEnv.set(
-      _worldCenter.x - camera.position.x,
-      _worldCenter.y - camera.position.y,
-      _worldCenter.z - camera.position.z,
-    );
-    const dist = _toEnv.length();
-    const inFront = _toEnv.dot(_dir) > 0;
-
-    // 投影到 NDC，±1.15 余量
-    _proj.copy(_worldCenter).project(camera);
-    const inView =
-      inFront &&
-      _proj.x > -1.15 &&
-      _proj.x < 1.15 &&
-      _proj.y > -1.15 &&
-      _proj.y < 1.15 &&
-      _proj.z > -1 &&
-      _proj.z < 1;
-
-    // 稳定期：数据就绪后 0.8s 才允许汇聚（防止页面加载即成型）
-    if (readyAtRef.current === null) readyAtRef.current = t;
-    const settled = t - readyAtRef.current >= 0.8;
-
-    const target = inView && settled ? 1 : 0;
-    progressRef.current += (target - progressRef.current) * Math.min(1, dt * transitionSpeed);
-
-    // 距离过远不渲染
-    group.visible = dist < 30;
-
+  // 4) 仅更新 uTime
+  useFrame((state) => {
     const u = materialRef.current?.uniforms;
-    if (u) {
-      u.uTime.value = t;
-      u.uProgress.value = progressRef.current;
-    }
+    if (u) u.uTime.value = state.clock.elapsedTime;
   });
 
   return (
