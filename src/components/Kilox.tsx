@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import { useGLTF, Text } from '@react-three/drei';
 import * as THREE from 'three';
 import { CELL_SCALE } from '../constants/global';
-import { EnvelopeLine } from './EnvelopeLine';
+import { EnvelopeLine } from './EnvelopeLine2';
 import { SceneFence } from './Fence';
 import {
   sceneState,
@@ -137,8 +137,7 @@ export function Kilox({
 
       {/* EnvelopeLine 粒子信封 */}
       <EnvelopeLine
-        svgUrl='/envelope.svg'
-        position={[-0.02, 0.1, 0.4]}
+        position={[-0.02, 0.2, 0.4]}
       />
 
       {/* 围栏：单元格 3 个侧面各 4 个 fence */}

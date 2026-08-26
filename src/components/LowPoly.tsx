@@ -1,8 +1,6 @@
 import * as THREE from 'three'
-import { useMemo, useRef } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useMemo } from 'react'
 import { Float } from '@react-three/drei'
-import type { JSX } from 'react'
 
 // ---------- 随机数（可复现） ----------
 function mulberry32(seed: number): () => number {

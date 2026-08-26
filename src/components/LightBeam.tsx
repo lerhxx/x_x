@@ -62,7 +62,7 @@ export function LightBeam({
         //   maxCount={3500} 
         // />
         <EnvelopeLine 
-          svgUrl='/envelope-1.svg'
+          svgUrl='/envelope.svg'
         />
       )}
     </group>

@@ -105,30 +105,6 @@ export function MazeGame({ maze, onWin }: MazeGameProps) {
   );
 }
 
-function ClickToPlayHint({ gameRef }: { gameRef: React.MutableRefObject<GameRef> }) {
-  const [locked, setLocked] = useState(false);
-
-  useEffect(() => {
-    const checkLock = () => {
-      setLocked(gameRef.current.pointerLocked);
-    };
-    const interval = window.setInterval(checkLock, 300);
-    return () => clearInterval(interval);
-  }, [gameRef]);
-
-  if (locked) return null;
-
-  return (
-    <div className="click-hint">
-      <div className="click-hint-box">
-        <div className="click-hint-icon">🖱️</div>
-        <div>点击画面锁定鼠标开始游戏</div>
-        <div className="click-hint-sub">WASD 移动 · 鼠标转动视角 · Esc 释放</div>
-      </div>
-    </div>
-  );
-}
-
 function SceneContent({
   maze,
   gameRef,
@@ -138,7 +114,7 @@ function SceneContent({
   gameRef: React.MutableRefObject<GameRef>;
   onWin: () => void;
 }) {
-  const { gl, scene } = useThree();
+  const { scene } = useThree();
 
   // Set fog and background color
   // useEffect(() => {

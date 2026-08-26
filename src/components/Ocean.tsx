@@ -95,7 +95,7 @@ export function Ocean({ width, height, margin = 15 }: OceanProps) {
   const planeH = mazeH + margin * 2;
 
   // Leva 调试面板
-  const { deepColor, shallowColor, foamColor, scale, foamThreshold, foamStrength } = useControls(
+  const ocean = useControls(
     'Ocean 调试',
     OCEAN_DEBUG
       ? {
@@ -108,7 +108,14 @@ export function Ocean({ width, height, margin = 15 }: OceanProps) {
         }
       : {},
     [],
-  );
+  ) as {
+    deepColor: string;
+    shallowColor: string;
+    foamColor: string;
+    scale: number;
+    foamThreshold: number;
+    foamStrength: number;
+  };
 
   const uniforms = useMemo(
     () => ({
@@ -129,12 +136,12 @@ export function Ocean({ width, height, margin = 15 }: OceanProps) {
     const u = matRef.current.uniforms;
     (u.u_time as { value: number }).value = state.clock.elapsedTime;
     if (OCEAN_DEBUG) {
-      (u.u_deepColor.value as THREE.Color).set(deepColor);
-      (u.u_shallowColor.value as THREE.Color).set(shallowColor);
-      (u.u_foamColor.value as THREE.Color).set(foamColor);
-      (u.u_scale as { value: number }).value = scale;
-      (u.u_foamThreshold as { value: number }).value = foamThreshold;
-      (u.u_foamStrength as { value: number }).value = foamStrength;
+      (u.u_deepColor.value as THREE.Color).set(ocean.deepColor);
+      (u.u_shallowColor.value as THREE.Color).set(ocean.shallowColor);
+      (u.u_foamColor.value as THREE.Color).set(ocean.foamColor);
+      (u.u_scale as { value: number }).value = ocean.scale;
+      (u.u_foamThreshold as { value: number }).value = ocean.foamThreshold;
+      (u.u_foamStrength as { value: number }).value = ocean.foamStrength;
     }
   });
 
