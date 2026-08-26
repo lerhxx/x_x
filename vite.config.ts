@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: 'x_x',
   server: {
     headers: {
       // 静态资源不要被 ServiceWorker/回退缓存影响
